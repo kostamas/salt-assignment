@@ -1,0 +1,45 @@
+@import "src/scss/all";
+
+.api-viewer-table-row {
+  box-shadow:-1px 1px 3px 0px rgba(0, 0, 0, 0.3);
+  margin-top: 10px;
+
+  .name {
+    @include text-style(13px,$color10, lighter);
+  }
+
+  .pii, .masked, .type {
+    @include dimension(75px, 20px);
+    @include flex(center, center);
+
+    &.selected {
+      color: white;
+    }
+  }
+
+  .pii {
+    border: 1px solid $color8;
+    color: $color8;
+
+    &.selected {
+      background-color: $color8;
+    }
+  }
+
+  .masked {
+    border: 1px solid $color2;
+    color: $color2;
+
+    &.selected {
+      background-color: $color2;
+    }
+  }
+
+  .type {
+    background-color: $color11;
+    color: $color12;
+    text-transform: uppercase;
+  }
+}
+
+

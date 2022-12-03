@@ -1,0 +1,50 @@
+@import "src/scss/all";
+
+.api-viewer-filter-component {
+  @include dimension(calc(100% - 10px), 40px);
+  @include flex(null, center);
+  box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.2);
+  background-color: white;
+  margin-bottom: 40px;
+  position: relative;
+  padding-left: 10px;
+
+  .search-icon {
+    @include dimension(15px, 15px);
+    margin-right: 10px;
+  }
+
+  .input {
+    @include dimension(calc(100% - 344px), 20px);
+    border: none;
+    margin-right: 30px;
+    border-right: 3px solid $color6;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .checkbox-component {
+    margin-right: 10px;
+  }
+
+  .show-pii-only {
+    width: 100px;
+    font-size: 13px;
+    margin-right: 10px;
+    padding-bottom: 2px;
+  }
+
+  .apply {
+    @include text-style(14px, white);
+    @include dimension(150px, 100%);
+    @include flex(center, center);
+    background-color: $color2;
+  }
+
+  .reset-filter {
+    @include position(absolute, null, 0, -18px, null);
+    @include text-style(12px, $color2);
+  }
+}

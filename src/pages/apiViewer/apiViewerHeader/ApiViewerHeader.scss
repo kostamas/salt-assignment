@@ -1,0 +1,46 @@
+@import 'src/scss/all';
+
+.api-viewer-header-component {
+  margin-bottom: 40px;
+  background-color: white;
+  padding: 20px 40px 0 40px;
+  box-shadow: 1px 2px 5px -3px $color4;
+
+
+  .title {
+    @include flex(null, center);
+    margin-bottom: 10px;
+
+    .method {
+      @include text-style(20px, $color1);
+      text-transform: uppercase;
+      margin-right: 10px;
+    }
+
+    .path {
+      @include text-style(23px, $color2, bold);
+    }
+  }
+
+  .separator {
+    @include dimension(100%, 1px);
+    border-bottom: 1px solid $color3;
+    margin: 15px 0 25px 0;
+  }
+
+  .api-viewer-tabs-wrapper {
+    @include flex(null, center);
+    @include position(relative, 2px);
+
+    .api-viewer-tab {
+      @include text-style(15px, $color4, bold);
+      @include dimension(100px, 30px);
+      @include flex(center, center);
+
+      &.selected {
+        color: $color2;
+        border-bottom: solid 3.5px $color2;
+      }
+    }
+  }
+}

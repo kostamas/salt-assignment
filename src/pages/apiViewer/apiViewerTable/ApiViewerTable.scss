@@ -1,0 +1,63 @@
+@import "src/scss/all";
+
+.api-viewer-table-component {
+  box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.2);
+  background-color: white;
+  padding-bottom: 15px;
+  width: 100%;
+
+  .table-columns {
+    box-sizing: border-box;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 100%;
+
+    .column-name {
+      @include text-style(15px, $color2);
+    }
+  }
+
+  .api-viewer-table-flex {
+    @include flex(null, center);
+    @include dimension(100%, 50px);
+    width: 100%;
+    font-weight: bold;
+    padding-left: 30px;
+    box-sizing: border-box;
+
+    > :nth-child(1) {
+      width: 25%;
+    }
+
+    > :nth-child(2) {
+      width: 100px;
+      min-width: 50px;
+    }
+
+    > :nth-child(3) {
+      width: calc(65% - 100px);
+    }
+
+    > :nth-child(4) {
+      width: 15%;
+    }
+  }
+
+  .separator {
+    @include dimension(100%, 1px);
+    background-color: $color13;
+  }
+
+  .table-rows {
+    .accordion {
+      margin-top: 20px;
+      padding: 0 20px 5px 20px;
+      width: 100%;
+      box-sizing: border-box;
+
+      &.open .content {
+        margin-top: 5px;
+      }
+    }
+  }
+}

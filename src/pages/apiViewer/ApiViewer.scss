@@ -1,0 +1,12 @@
+@import '../../scss/all';
+
+.api-viewer-component {
+  @include dimension(100vw, auto);
+  background-color: $color5;
+  padding-bottom: 20px;
+  min-height: 100vh;
+
+  .api-viewer-content {
+    padding: 0 40px;
+  }
+}

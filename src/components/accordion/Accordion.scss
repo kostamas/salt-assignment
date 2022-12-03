@@ -1,0 +1,46 @@
+@import "src/scss/all";
+
+.accordion {
+  overflow: hidden;
+
+  .title-and-btn {
+    @include flex(null, center);
+    @include dimension(null, 30px);
+
+    .toggle-btn {
+      @include dimension(15px, 15px);
+      @include flex(center, center);
+      background-color: $color9;
+      border-radius: 100%;
+      cursor: pointer;
+      margin-right: 10px;
+
+      img {
+        @include dimension(13px, 13px);
+      }
+    }
+
+    .title {
+      @include text-style(15px, $color10, bold)
+    }
+  }
+
+  .content {
+    overflow: hidden;
+    transition: 0.5s;
+    height: 0;
+    max-height: 0;
+  }
+
+  &.open {
+    .toggle-btn {
+      transform: rotate(90deg);
+    }
+
+    .content {
+      height: auto;
+      overflow: visible;
+      max-height: 400px;
+    }
+  }
+}

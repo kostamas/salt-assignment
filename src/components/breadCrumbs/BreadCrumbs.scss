@@ -1,0 +1,16 @@
+@import "src/scss/all";
+
+.bread-crumbs-component {
+  @include text-style(14px, $color2, bold);
+
+  .bread-crumb:last-child {
+    font-weight: normal;
+  }
+
+  .greater-icon {
+    @include dimension(9px, 9px);
+    margin-left: 4px;
+    position: relative;
+    top: 2px;
+  }
+}

@@ -1,0 +1,13 @@
+@import "src/scss/all";
+
+.checkbox-component {
+  @include dimension(11px, 11px);
+  @include flex(center, center);
+  border: 1px solid $color7;
+  cursor: pointer;
+
+  .checked {
+    @include dimension(calc(100% - 3px), calc(100% - 3px));
+    background-color: $color2;
+  }
+}
