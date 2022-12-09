@@ -3,11 +3,13 @@ import './ApiViewerHeader.scss';
 import BreadCrumbs from '../../../components/breadCrumbs/BreadCrumbs';
 import classNames from 'classnames';
 import {ApiViewerViews} from '../ApiViewer.constant';
+import {useSelector} from "react-redux";
+import {RootState} from "../../../redux/store";
 
-function ApiViewerHeader (props: {apiData: any, currentView: string, setCurrentView: any}) {
-    const {apiData,currentView, setCurrentView} = props;
-
+function ApiViewerHeader({currentView, setCurrentView}: any) {
+    const apiData = useSelector((state: RootState) => state.apiViewer.apiData);
     const breadCrumbs = useMemo(() => ['All APIs', apiData.api, apiData.path], [apiData.api, apiData.path]);
+
     return (
         <div className={'api-viewer-header-component'}>
             <div className={'title'}>

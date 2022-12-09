@@ -1,19 +1,26 @@
 import React from 'react';
 import './ApiViewerTable.scss';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../../redux/store';
 import {filterApiDetails} from '../ApiViewer.service';
 import ApiViewerTableRow from '../apiViewerTableRow/ApiViewerTableRow';
 import Accordion from '../../../components/accordion/Accordion';
+import {updateApiData} from "../../../redux/slices/apiViewerSlice";
 
-function ApiViewerTable(props: { apiData: any, currentView: string }) {
-    const {apiData, currentView} = props;
+function ApiViewerTable({currentView}: any) {
     const apiDetailsKeys = ['urlParams', 'queryParams', 'headers', 'body'];
     const filterValue = useSelector((state: RootState) => state.apiViewer.filterValue);
     const showOnlyPii = useSelector((state: RootState) => state.apiViewer.showOnlyPii);
-    let apiDetailsFiltered = apiData[currentView];
+    const apiData = useSelector((state: RootState) => state.apiViewer.apiData);
+    const apiDetailsFiltered = filterApiDetails(JSON.parse(JSON.stringify(apiData[currentView])), apiDetailsKeys, filterValue, showOnlyPii);
+    const dispatch = useDispatch();
 
-    apiDetailsFiltered = filterApiDetails(JSON.parse(JSON.stringify(apiDetailsFiltered)), apiDetailsKeys, filterValue, showOnlyPii);
+    const updateApiDetail = (key: string, detailKey: string, detailName: string, newValue: any) => {
+        const newApiData = JSON.parse(JSON.stringify(apiData))
+        const detailToUpdate = newApiData[currentView][key].find((detail: any) => detail.name === detailName);
+        detailToUpdate[detailKey] = newValue
+        dispatch(updateApiData(newApiData))
+    }
 
     return <div className='api-viewer-table-component'>
         <div className='table-columns'>
@@ -34,7 +41,9 @@ function ApiViewerTable(props: { apiData: any, currentView: string }) {
                     <div key={index}>
                         <Accordion title={key} contentArr={
                             apiDetailsFiltered[key].map((details: any, index: number) => {
-                                return <ApiViewerTableRow apiDetails={details} key={index}/>
+                                return <ApiViewerTableRow apiDetails={details} key={index}
+                                                          updateApiDetail={(detailKey: string, detailName: string, newValue: any) => updateApiDetail(key, detailKey, detailName, newValue)}
+                                />
                             })}/>
                     </div>}
                 </span>
